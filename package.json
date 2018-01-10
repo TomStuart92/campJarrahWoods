@@ -1,21 +1,13 @@
 {
   "name": "campjarrahwoods",
   "version": "1.0.0",
-  "description": "",
+  "description": "Website for Camp Jarrah Woods",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/TomStuart92/campJarrahWoods.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/TomStuart92/campJarrahWoods/issues"
-  },
-  "homepage": "https://github.com/TomStuart92/campJarrahWoods#readme",
+  "author": "Tom Stuart",
+  "license": "UNLICENSED",
   "dependencies": {
     "express": "^4.16.2"
   }
