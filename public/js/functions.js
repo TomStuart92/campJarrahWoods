@@ -38,8 +38,8 @@ jQuery(document).ready(function($) {
 	-------------------------------------------------------------------*/
 	$('#main-menu #headernavigation').onePageNav({
 		currentClass: 'active',
-		changeHash: false,
-		scrollSpeed: 750,
+		changeHash: true,
+		scrollSpeed: 75,
 		scrollThreshold: 0.5,
 		scrollOffset: 0,
 		filter: '',
@@ -103,21 +103,16 @@ jQuery(document).ready(function($) {
 
   /* Subscribe
   -------------------------------------------------------------------*/
-    $(".news-letter").ajaxChimp({
-        callback: mailchimpResponse,
-        url: "http://jeweltheme.us10.list-manage.com/subscribe/post?u=a3e1b6603a9caac983abe3892&amp;id=257cf1a459" // Replace your mailchimp post url inside double quote "".  
-    });
-
-    function mailchimpResponse(resp) {
-         if(resp.result === 'success') {
-         
-            $('.alert-success').html(resp.msg).fadeIn().delay(3000).fadeOut();
-            
-        } else if(resp.result === 'error') {
-            $('.alert-warning').html(resp.msg).fadeIn().delay(3000).fadeOut();
+  $('#subscribe-submit').click(function(e){   
+    e.preventDefault();
+    $.post("/subscribe", $("#subscribe-email").serialize(), function(resp){
+        if(resp === 'success') {
+          $('.alert-success').html('Successfully Subscribed').fadeIn().delay(3000).fadeOut();       
+        } else {
+          $('.alert-warning').html('Error Subscribing').fadeIn().delay(3000).fadeOut();
         }  
-    };
-
+      });
+  });
 
 
 
@@ -186,7 +181,7 @@ jQuery(document).ready(function($) {
       $('#contact-submit').attr({'disabled' : 'true', 'value' : 'Sending' });
 
       /* Post Ajax function of jQuery to get all the data from the submission of the form as soon as the form sends the values to email.php*/
-      $.post("php/contact.php", $("#contact-form").serialize(),function(result){
+      $.post("/contact", $("#contact-form").serialize(),function(result){
         //Check the result set from email.php file.
         if(result == 'sent'){
 
